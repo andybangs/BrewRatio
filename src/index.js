@@ -3,7 +3,7 @@ import { observer } from 'mobx-react/native';
 import { KeyboardAvoidingView, StatusBar, StyleSheet, View } from 'react-native';
 import Variable from './components/Variable';
 import Timer from './components/Timer';
-import appStore from './appStore';
+import AppStore from './AppStore';
 import { COLORS } from './constants';
 
 const App = observer(({ store }) => (
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default () => <App store={appStore} />;
+export default () => <App store={new AppStore()} />;
