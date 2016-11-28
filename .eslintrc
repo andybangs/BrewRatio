@@ -4,6 +4,7 @@
   "rules": {
     "comma-dangle": ["error", "never"],
     "no-use-before-define": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/sort-comp": 0
   }
 }

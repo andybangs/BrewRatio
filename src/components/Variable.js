@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+/* @flow */
+import React from 'react';
 import {
   Dimensions,
   Platform,
@@ -12,24 +13,23 @@ import BRPanel from './BRPanel';
 import BRButton from './BRButton';
 import { COLORS } from '../constants';
 
-const propTypes = {
-  title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  displayInOz: PropTypes.bool,
-  incHandler: PropTypes.func.isRequired,
-  decHandler: PropTypes.func.isRequired,
-  changeHandler: PropTypes.func.isRequired,
-  submitHandler: PropTypes.func, //eslint-disable-line
-  toggleUnit: PropTypes.func,
-  backgroundColor: PropTypes.string.isRequired
+type Props = {
+  title: string,
+  value: string,
+  displayInOz?: boolean,
+  incHandler: () => void,
+  decHandler: () => void,
+  changeHandler: (val: string) => void,
+  submitHandler: (val: string) => void,
+  toggleUnit?: () => void,
+  backgroundColor: string
 };
 
-const Variable = props => (
+const Variable = (props: Props) => (
   <BRPanel title={props.title} backgroundColor={props.backgroundColor}>
     <View style={styles.container}>
       <View style={styles.row}>
         <TextInput
-          ref={c => (this.textInput = c)}
           keyboardType="numeric"
           style={styles.input}
           underlineColorAndroid={props.backgroundColor}
@@ -106,7 +106,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 });
-
-Variable.propTypes = propTypes;
 
 export default Variable;

@@ -1,20 +1,31 @@
-import React, { Component, PropTypes } from 'react';
+/* @flow */
+import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import BRPanel from './BRPanel';
 import BRButton from './BRButton';
 import { COLORS } from '../constants';
 
-const TIMER = {
-  STOPPED: 'STOPPED',
-  RUNNING: 'RUNNING'
-};
-
-const propTypes = {
-  backgroundColor: PropTypes.string.isRequired
+type Props = {
+  backgroundColor: string
 };
 
 class Timer extends Component {
-  constructor(props) {
+  props: Props;
+
+  state: {
+    secondsElapsed: number,
+    lastClearedIncrementer: number | null,
+    timerState: 'STOPPED' | 'RUNNING';
+  };
+
+  incrementer: number;
+  handleStartClick: () => void;
+  handleStopClick: () => void;
+  handleResetClick: () => void;
+  noSecondsElapsed: () => boolean;
+  incrementerAtLastCleared: () => boolean;
+
+  constructor(props: Props) {
     super(props);
 
     this.handleStartClick = this.handleStartClick.bind(this);
@@ -26,49 +37,49 @@ class Timer extends Component {
     this.state = {
       secondsElapsed: 0,
       lastClearedIncrementer: null,
-      timerState: TIMER.STOPPED
+      timerState: 'STOPPED'
     };
   }
 
-  getSeconds() {
+  getSeconds(): string {
     return (`0${this.state.secondsElapsed % 60}`).slice(-2);
   }
 
-  getMinutes() {
-    return Math.floor(this.state.secondsElapsed / 60);
+  getMinutes(): string {
+    return Math.floor(this.state.secondsElapsed / 60).toString();
   }
 
-  handleStartClick() {
-    if (this.state.timerState !== TIMER.RUNNING) {
-      this.setState({ timerState: TIMER.RUNNING });
+  handleStartClick(): void {
+    if (this.state.timerState !== 'RUNNING') {
+      this.setState({ timerState: 'RUNNING' });
       this.incrementer = setInterval(() => {
         this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
       }, 1000);
     }
   }
 
-  handleStopClick() {
-    if (this.state.timerState !== TIMER.STOPPED) {
-      this.setState({ timerState: TIMER.STOPPED });
-      clearInterval(this.incrementer);
+  handleStopClick(): void {
+    if (this.state.timerState !== 'STOPPED') {
+      this.setState({ timerState: 'STOPPED' });
+      if (this.incrementer) clearInterval(this.incrementer);
       this.setState({ lastClearedIncrementer: this.incrementer });
     }
   }
 
-  handleResetClick() {
+  handleResetClick(): void {
     this.setState({ secondsElapsed: 0 });
   }
 
-  noSecondsElapsed() {
+  noSecondsElapsed(): boolean {
     return this.state.secondsElapsed === 0;
   }
 
-  incrementerAtLastCleared() {
+  incrementerAtLastCleared(): boolean {
     return this.incrementer === this.state.lastClearedIncrementer;
   }
 
   render() {
-    const backgroundColor = (this.noSecondsElapsed() && this.state.timerState === TIMER.RUNNING) ?
+    const backgroundColor = (this.noSecondsElapsed() && this.state.timerState === 'RUNNING') ?
       COLORS.GREEN : this.props.backgroundColor;
 
     return (
@@ -134,7 +145,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
-
-Timer.propTypes = propTypes;
 
 export default Timer;

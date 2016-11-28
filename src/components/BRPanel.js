@@ -1,15 +1,15 @@
-import React, { PropTypes } from 'react';
+/* @flow */
+import React, { Element } from 'react';
 import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { COLORS } from '../constants';
 
-
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
-  backgroundColor: PropTypes.string.isRequired
+type Props = {
+  children?: Element<any>,
+  title: string,
+  backgroundColor: string
 };
 
-const BRPanel = props => (
+const BRPanel = (props: Props) => (
   <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <View style={[styles.container, { backgroundColor: props.backgroundColor }]}>
       <View style={styles.flex1}>
@@ -48,7 +48,5 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
-
-BRPanel.propTypes = propTypes;
 
 export default BRPanel;

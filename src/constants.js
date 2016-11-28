@@ -1,5 +1,19 @@
+/* @flow */
+
+type Colors = {
+  CHARCOAL: string,
+  CHARCOAL_25: string,
+  CHARCOAL_DARK: string,
+  CHARCOAL_LIGHT: string,
+  BROWN: string,
+  BLUE: string,
+  GRAY: string,
+  WHITE: string,
+  GREEN: string
+};
+
 // eslint-disable-next-line
-export const COLORS = {
+export const COLORS: Colors = {
   CHARCOAL: '#4f4f4f',
   CHARCOAL_25: 'rgba(79, 79, 79, 0.25)',
   CHARCOAL_DARK: '#545454',

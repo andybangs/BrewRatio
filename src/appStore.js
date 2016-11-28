@@ -1,3 +1,4 @@
+/* @flow */
 import { action, computed, observable } from 'mobx';
 import { toDecimal, isValidNumStr, trimTrailingDecimal, gToOz, ozToG } from './helpers';
 
@@ -8,19 +9,21 @@ const MAX = {
 };
 
 export default class AppStore {
-  @observable coffee;
-  @observable water;
-  @observable ratio;
-  @observable displayCoffeeInOz = false;
-  @observable displayWaterInOz = false;
+  @observable coffee: string;
+  @observable water: string;
+  @observable ratio: string;
+  @observable displayCoffeeInOz: boolean;
+  @observable displayWaterInOz: boolean;
 
-  constructor(coffee = 20, water = 320, ratio = 16) {
+  constructor(coffee: number = 20, water: number = 320, ratio: number = 16) {
     this.coffee = coffee.toString();
     this.water = water.toString();
     this.ratio = ratio.toString();
+    this.displayCoffeeInOz = false;
+    this.displayWaterInOz = true;
   }
 
-  @computed get coffeeDisplay() {
+  @computed get coffeeDisplay(): string {
     const valInOz = toDecimal(gToOz(parseInt(this.coffee, 10))).toString();
 
     if (this.displayCoffeeInOz) {
@@ -32,7 +35,7 @@ export default class AppStore {
     return this.coffee;
   }
 
-  @computed get waterDisplay() {
+  @computed get waterDisplay(): string {
     const valInOz = toDecimal(gToOz(parseFloat(this.water, 10))).toString();
 
     if (this.displayWaterInOz) {
@@ -44,7 +47,7 @@ export default class AppStore {
     return this.water.indexOf('.') !== -1 ? trimTrailingDecimal(this.water) : this.water;
   }
 
-  @action incCoffee() {
+  @action incCoffee(): void {
     const currentVal = parseFloat(this.coffee, 10);
     const val = this.displayCoffeeInOz ?
       toDecimal(ozToG((toDecimal(gToOz(currentVal)) * 10) + 1) / 10) :
@@ -53,7 +56,7 @@ export default class AppStore {
     this.updateCoffee(val.toString());
   }
 
-  @action decCoffee() {
+  @action decCoffee(): void {
     const currentVal = parseFloat(this.coffee, 10);
     const val = this.displayCoffeeInOz ?
       toDecimal(ozToG((toDecimal(gToOz(currentVal)) * 10) - 1) / 10) :
@@ -62,7 +65,7 @@ export default class AppStore {
     this.updateCoffee(val.toString());
   }
 
-  @action inputCoffee(val) {
+  @action inputCoffee(val: string): void {
     if (!isValidNumStr(val)) return;
     const num = parseFloat(val, 10);
     const convertedNum = this.displayCoffeeInOz ? toDecimal(ozToG(num)) : num;
@@ -71,7 +74,7 @@ export default class AppStore {
     this.updateCoffee(strVal);
   }
 
-  @action incWater() {
+  @action incWater(): void {
     const currentVal = parseFloat(this.water, 10);
     const val = this.displayWaterInOz ?
       parseInt(ozToG((toDecimal(gToOz(currentVal)) * 10) + 1) / 10, 10) :
@@ -80,7 +83,7 @@ export default class AppStore {
     this.updateWater(val.toString());
   }
 
-  @action decWater() {
+  @action decWater(): void {
     const currentVal = parseFloat(this.water, 10);
     const val = this.displayWaterInOz ?
       parseInt(ozToG((toDecimal(gToOz(currentVal)) * 10) - 1) / 10, 10) :
@@ -89,7 +92,7 @@ export default class AppStore {
     this.updateWater(val.toString());
   }
 
-  @action inputWater(val) {
+  @action inputWater(val: string): void {
     if (!isValidNumStr(val) || (!this.displayWaterInOz && val.indexOf('.') !== -1)) return;
     const num = parseFloat(val, 10);
     const convertedNum = this.displayWaterInOz ? parseInt(ozToG(num), 10) : Math.round(num);
@@ -98,22 +101,22 @@ export default class AppStore {
     this.updateWater(strVal);
   }
 
-  @action incRatio() {
+  @action incRatio(): void {
     const val = ((parseFloat(this.ratio, 10) * 10) + 1) / 10;
     this.updateRatio(val.toString());
   }
 
-  @action decRatio() {
+  @action decRatio(): void {
     if (parseFloat(this.ratio, 10) <= 0) return;
     const val = ((parseFloat(this.ratio, 10) * 10) - 1) / 10;
     this.updateRatio(val.toString());
   }
 
-  @action inputRatio(val) {
+  @action inputRatio(val: string): void {
     this.updateRatio(val);
   }
 
-  @action trimCoffeeDecimal(val) {
+  @action trimCoffeeDecimal(val: string) {
     if (val[val.length - 1] === '.') {
       const num = parseInt(val, 10);
       const convertedNum = this.displayCoffeeInOz ? toDecimal(ozToG(num)) : num;
@@ -121,7 +124,7 @@ export default class AppStore {
     }
   }
 
-  @action trimWaterDecimal(val) {
+  @action trimWaterDecimal(val: string): void {
     if (val[val.length - 1] === '.') {
       const num = parseInt(val, 10);
       const convertedNum = this.displayWaterInOz ? toDecimal(ozToG(num)) : num;
@@ -129,15 +132,15 @@ export default class AppStore {
     }
   }
 
-  @action trimRatioDecimal(val) {
+  @action trimRatioDecimal(val: string): void {
     this.ratio = (val[val.length - 1] === '.') ? trimTrailingDecimal(val) : val;
   }
 
-  @action toggleCoffeeUnit() {
+  @action toggleCoffeeUnit(): void {
     this.displayCoffeeInOz = !this.displayCoffeeInOz;
   }
 
-  @action toggleWaterUnit() {
+  @action toggleWaterUnit(): void {
     this.displayWaterInOz = !this.displayWaterInOz;
   }
 
@@ -145,19 +148,19 @@ export default class AppStore {
   // Private
   //------------------------------------------------------------------------------------------------
 
-  updateCoffee(val) {
+  updateCoffee(val: string): void {
     if (typeof val !== 'string') throw new Error('val must be of type String');
     this.coffee = val;
     this.water = parseInt((parseFloat(val, 10) * parseFloat(this.ratio, 10)), 10).toString();
   }
 
-  updateWater(val) {
+  updateWater(val: string): void {
     if (typeof val !== 'string') throw new Error('val must be of type String');
     this.water = val;
     this.coffee = toDecimal(parseInt(val, 10) / parseFloat(this.ratio, 10)).toString();
   }
 
-  updateRatio(val) {
+  updateRatio(val: string): void {
     if (typeof val !== 'string') throw new Error('val must be of type String');
     if (!isValidNumStr(val)) return;
 

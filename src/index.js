@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import { observer } from 'mobx-react/native';
 import { KeyboardAvoidingView, StatusBar, StyleSheet, View } from 'react-native';
@@ -6,7 +7,7 @@ import Timer from './components/Timer';
 import AppStore from './AppStore';
 import { COLORS } from './constants';
 
-const App = observer(({ store }) => (
+const App = observer(({ store }: { store: AppStore }) => (
   <KeyboardAvoidingView behavior="padding" style={styles.container}>
     <StatusBar hidden />
     <View style={styles.row}>
@@ -16,8 +17,8 @@ const App = observer(({ store }) => (
         displayInOz={store.displayCoffeeInOz}
         incHandler={() => store.incCoffee()}
         decHandler={() => store.decCoffee()}
-        changeHandler={text => store.inputCoffee(text)}
-        submitHandler={text => store.trimCoffeeDecimal(text)}
+        changeHandler={(val: string) => store.inputCoffee(val)}
+        submitHandler={(val: string) => store.trimCoffeeDecimal(val)}
         toggleUnit={() => store.toggleCoffeeUnit()}
         backgroundColor={COLORS.BROWN}
       />
@@ -27,8 +28,8 @@ const App = observer(({ store }) => (
         displayInOz={store.displayWaterInOz}
         incHandler={() => store.incWater()}
         decHandler={() => store.decWater()}
-        changeHandler={text => store.inputWater(text)}
-        submitHandler={text => store.trimWaterDecimal(text)}
+        changeHandler={(val: string) => store.inputWater(val)}
+        submitHandler={(val: string) => store.trimWaterDecimal(val)}
         toggleUnit={() => store.toggleWaterUnit()}
         backgroundColor={COLORS.BLUE}
       />
@@ -39,8 +40,8 @@ const App = observer(({ store }) => (
         value={store.ratio}
         incHandler={() => store.incRatio()}
         decHandler={() => store.decRatio()}
-        changeHandler={text => store.inputRatio(text)}
-        submitHandler={text => store.trimRatioDecimal(text)}
+        changeHandler={(val: string) => store.inputRatio(val)}
+        submitHandler={(val: string) => store.trimRatioDecimal(val)}
         backgroundColor={COLORS.GRAY}
       />
       <Timer backgroundColor={COLORS.WHITE} />

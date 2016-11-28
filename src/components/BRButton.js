@@ -1,22 +1,23 @@
-import React, { PropTypes } from 'react';
+/* @flow */
+import React, { Element } from 'react';
 import { StyleSheet, Text, TouchableHighlight } from 'react-native';
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  color: PropTypes.string.isRequired,
-  backgroundColor: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired
+let interval: number;
+
+type Props = {
+  children?: Element<any>,
+  color: string,
+  backgroundColor: string,
+  onPress: () => void
 };
 
-let interval;
-
-const BRButton = props => (
+const BRButton = (props: Props) => (
   <TouchableHighlight
     style={[styles.container, { backgroundColor: props.backgroundColor }]}
     underlayColor={props.backgroundColor}
     onPress={props.onPress}
     onPressIn={() => (interval = setInterval(props.onPress, 100))}
-    onPressOut={() => clearInterval(interval)}
+    onPressOut={() => interval && clearInterval(interval)}
   >
     <Text style={[styles.text, { color: props.color }]}>{props.children}</Text>
   </TouchableHighlight>
@@ -33,7 +34,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
-
-BRButton.propTypes = propTypes;
 
 export default BRButton;
