@@ -8,11 +8,15 @@ const propTypes = {
   onPress: PropTypes.func.isRequired
 };
 
+let interval;
+
 const BRButton = props => (
   <TouchableHighlight
     style={[styles.container, { backgroundColor: props.backgroundColor }]}
     underlayColor={props.backgroundColor}
     onPress={props.onPress}
+    onPressIn={() => (interval = setInterval(props.onPress, 100))}
+    onPressOut={() => clearInterval(interval)}
   >
     <Text style={[styles.text, { color: props.color }]}>{props.children}</Text>
   </TouchableHighlight>

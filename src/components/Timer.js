@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import BRPanel from './BRPanel';
 import BRButton from './BRButton';
-import { COLORS, TITLES } from '../constants';
+import { COLORS } from '../constants';
 
 const TIMER = {
   STOPPED: 'STOPPED',
@@ -72,7 +72,7 @@ class Timer extends Component {
       COLORS.GREEN : this.props.backgroundColor;
 
     return (
-      <BRPanel title={TITLES.TIMER} backgroundColor={backgroundColor}>
+      <BRPanel title="TIMER" backgroundColor={backgroundColor}>
         <View style={styles.container}>
           <View style={styles.row}>
             <Text style={styles.value}>{this.getMinutes()}:{this.getSeconds()}</Text>

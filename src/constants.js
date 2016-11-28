@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 export const COLORS = {
   CHARCOAL: '#4f4f4f',
   CHARCOAL_25: 'rgba(79, 79, 79, 0.25)',
@@ -8,16 +9,4 @@ export const COLORS = {
   GRAY: '#eaeaea',
   WHITE: '#fff',
   GREEN: '#e1ffde'
-};
-
-export const TITLES = {
-  COFFEE: 'COFFEE',
-  WATER: 'WATER',
-  RATIO: 'RATIO',
-  TIMER: 'TIMER'
-};
-
-export const UNITS = {
-  GRAMS: 'G',
-  OUNCES: 'OZ'
 };
