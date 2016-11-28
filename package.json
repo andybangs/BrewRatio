@@ -9,8 +9,8 @@
 	"dependencies": {
 		"mobx": "^2.6.3",
 		"mobx-react": "^4.0.0",
-		"react": "~15.3.1",
-		"react-native": "0.37.0"
+		"react": "~15.4.0-rc.4",
+		"react-native": "0.38"
 	},
 	"devDependencies": {
 		"babel-eslint": "^7.1.1",

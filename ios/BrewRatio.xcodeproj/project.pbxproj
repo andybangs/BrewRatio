@@ -103,49 +103,49 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		A1EEE3641DDE0D43003E982A /* PBXContainerItemProxy */ = {
+		A11C05A31DEC105600387F18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2D2A283A1D9B042B00D4039D;
 			remoteInfo = "RCTImage-tvOS";
 		};
-		A1EEE3681DDE0D43003E982A /* PBXContainerItemProxy */ = {
+		A11C05A71DEC105600387F18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2D2A28471D9B043800D4039D;
 			remoteInfo = "RCTLinking-tvOS";
 		};
-		A1EEE36C1DDE0D43003E982A /* PBXContainerItemProxy */ = {
+		A11C05AB1DEC105600387F18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2D2A28541D9B044C00D4039D;
 			remoteInfo = "RCTNetwork-tvOS";
 		};
-		A1EEE3701DDE0D43003E982A /* PBXContainerItemProxy */ = {
+		A11C05AF1DEC105600387F18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2D2A28611D9B046600D4039D;
 			remoteInfo = "RCTSettings-tvOS";
 		};
-		A1EEE3741DDE0D43003E982A /* PBXContainerItemProxy */ = {
+		A11C05B31DEC105600387F18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2D2A287B1D9B048500D4039D;
 			remoteInfo = "RCTText-tvOS";
 		};
-		A1EEE3791DDE0D43003E982A /* PBXContainerItemProxy */ = {
+		A11C05B81DEC105600387F18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2D2A28881D9B049200D4039D;
 			remoteInfo = "RCTWebSocket-tvOS";
 		};
-		A1EEE37D1DDE0D43003E982A /* PBXContainerItemProxy */ = {
+		A11C05BC1DEC105600387F18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
@@ -227,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				00C302C01ABCB91800DB3ED1 /* libRCTImage.a */,
-				A1EEE3651DDE0D43003E982A /* libRCTImage-tvOS.a */,
+				A11C05A41DEC105600387F18 /* libRCTImage-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */,
-				A1EEE36D1DDE0D43003E982A /* libRCTNetwork-tvOS.a */,
+				A11C05AC1DEC105600387F18 /* libRCTNetwork-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -270,7 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				139105C11AF99BAD00B5F7CC /* libRCTSettings.a */,
-				A1EEE3711DDE0D43003E982A /* libRCTSettings-tvOS.a */,
+				A11C05B01DEC105600387F18 /* libRCTSettings-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
-				A1EEE37A1DDE0D43003E982A /* libRCTWebSocket-tvOS.a */,
+				A11C05B91DEC105600387F18 /* libRCTWebSocket-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,7 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				146834041AC3E56700842450 /* libReact.a */,
-				A1EEE37E1DDE0D43003E982A /* libReact-tvOS.a */,
+				A11C05BD1DEC105600387F18 /* libReact-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				78C398B91ACF4ADC00677621 /* libRCTLinking.a */,
-				A1EEE3691DDE0D43003E982A /* libRCTLinking-tvOS.a */,
+				A11C05A81DEC105600387F18 /* libRCTLinking-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,7 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				832341B51AAA6A8300B99B32 /* libRCTText.a */,
-				A1EEE3751DDE0D43003E982A /* libRCTText-tvOS.a */,
+				A11C05B41DEC105600387F18 /* libRCTText-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -549,53 +549,53 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A1EEE3651DDE0D43003E982A /* libRCTImage-tvOS.a */ = {
+		A11C05A41DEC105600387F18 /* libRCTImage-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libRCTImage-tvOS.a";
-			remoteRef = A1EEE3641DDE0D43003E982A /* PBXContainerItemProxy */;
+			remoteRef = A11C05A31DEC105600387F18 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A1EEE3691DDE0D43003E982A /* libRCTLinking-tvOS.a */ = {
+		A11C05A81DEC105600387F18 /* libRCTLinking-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libRCTLinking-tvOS.a";
-			remoteRef = A1EEE3681DDE0D43003E982A /* PBXContainerItemProxy */;
+			remoteRef = A11C05A71DEC105600387F18 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A1EEE36D1DDE0D43003E982A /* libRCTNetwork-tvOS.a */ = {
+		A11C05AC1DEC105600387F18 /* libRCTNetwork-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libRCTNetwork-tvOS.a";
-			remoteRef = A1EEE36C1DDE0D43003E982A /* PBXContainerItemProxy */;
+			remoteRef = A11C05AB1DEC105600387F18 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A1EEE3711DDE0D43003E982A /* libRCTSettings-tvOS.a */ = {
+		A11C05B01DEC105600387F18 /* libRCTSettings-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libRCTSettings-tvOS.a";
-			remoteRef = A1EEE3701DDE0D43003E982A /* PBXContainerItemProxy */;
+			remoteRef = A11C05AF1DEC105600387F18 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A1EEE3751DDE0D43003E982A /* libRCTText-tvOS.a */ = {
+		A11C05B41DEC105600387F18 /* libRCTText-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libRCTText-tvOS.a";
-			remoteRef = A1EEE3741DDE0D43003E982A /* PBXContainerItemProxy */;
+			remoteRef = A11C05B31DEC105600387F18 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A1EEE37A1DDE0D43003E982A /* libRCTWebSocket-tvOS.a */ = {
+		A11C05B91DEC105600387F18 /* libRCTWebSocket-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libRCTWebSocket-tvOS.a";
-			remoteRef = A1EEE3791DDE0D43003E982A /* PBXContainerItemProxy */;
+			remoteRef = A11C05B81DEC105600387F18 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A1EEE37E1DDE0D43003E982A /* libReact-tvOS.a */ = {
+		A11C05BD1DEC105600387F18 /* libReact-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libReact-tvOS.a";
-			remoteRef = A1EEE37D1DDE0D43003E982A /* PBXContainerItemProxy */;
+			remoteRef = A11C05BC1DEC105600387F18 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
