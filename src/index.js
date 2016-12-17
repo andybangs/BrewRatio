@@ -4,7 +4,7 @@ import { observer } from 'mobx-react/native';
 import { KeyboardAvoidingView, StatusBar, StyleSheet, View } from 'react-native';
 import Variable from './components/Variable';
 import Timer from './components/Timer';
-import AppStore from './AppStore';
+import AppStore from './stores/AppStore';
 import { COLORS } from './constants';
 
 const App = observer(({ store }: { store: AppStore }) => (
@@ -14,7 +14,7 @@ const App = observer(({ store }: { store: AppStore }) => (
       <Variable
         title="COFFEE"
         value={store.coffeeDisplay}
-        displayInOz={store.displayCoffeeInOz}
+        displayInOz={store.coffee.displayInOz}
         incHandler={() => store.incCoffee()}
         decHandler={() => store.decCoffee()}
         changeHandler={(val: string) => store.inputCoffee(val)}
@@ -25,7 +25,7 @@ const App = observer(({ store }: { store: AppStore }) => (
       <Variable
         title="WATER"
         value={store.waterDisplay}
-        displayInOz={store.displayWaterInOz}
+        displayInOz={store.water.displayInOz}
         incHandler={() => store.incWater()}
         decHandler={() => store.decWater()}
         changeHandler={(val: string) => store.inputWater(val)}
@@ -37,7 +37,7 @@ const App = observer(({ store }: { store: AppStore }) => (
     <View style={styles.row}>
       <Variable
         title="RATIO"
-        value={store.ratio}
+        value={store.ratio.value}
         incHandler={() => store.incRatio()}
         decHandler={() => store.decRatio()}
         changeHandler={(val: string) => store.inputRatio(val)}
