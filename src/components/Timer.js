@@ -119,7 +119,7 @@ class Timer extends Component {
 }
 
 const { width } = Dimensions.get('window');
-const buttonsWidth = (width / 2) - 20;
+const buttonsWidth = (width / 2) - 12;
 
 const styles = StyleSheet.create({
   container: {
@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   value: {
+    fontFamily: 'RobotoMono-Bold',
     fontSize: 48,
-    fontWeight: 'bold',
     color: COLORS.CHARCOAL,
     textAlign: 'center'
   },

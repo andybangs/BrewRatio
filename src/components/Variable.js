@@ -74,7 +74,7 @@ const Variable = (props: Props) => (
 );
 
 const { width } = Dimensions.get('window');
-const buttonsWidth = (width / 2) - 20;
+const buttonsWidth = (width / 2) - 12;
 
 const styles = StyleSheet.create({
   container: {
@@ -88,14 +88,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   input: {
+    fontFamily: 'RobotoMono-Bold',
     fontSize: 48,
-    fontWeight: 'bold',
     color: COLORS.CHARCOAL,
     textAlign: 'center',
     height: 80,
     width: buttonsWidth
   },
   unit: {
+    fontFamily: 'RobotoMono-Regular',
     fontSize: 18,
     color: COLORS.CHARCOAL,
     textAlign: 'center'

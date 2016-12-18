@@ -39,10 +39,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   titleCont: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 1.5,
     borderBottomColor: COLORS.CHARCOAL
   },
   title: {
+    fontFamily: 'RobotoMono-Regular',
     fontSize: 20,
     color: COLORS.CHARCOAL,
     textAlign: 'center'
