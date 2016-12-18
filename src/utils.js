@@ -1,14 +1,26 @@
 /* @flow */
 
 export function toDecimal(val: number): number {
-  return +(val).toFixed(1);
+  if (typeof val !== 'number') {
+    throw new Error('val must be of type Number');
+  }
+
+  return +(Math.round(val * 10, 10) / 10).toFixed(1);
 }
 
 export function isValidNumStr(val: string): boolean {
-  return typeof val === 'string' && (val.indexOf('.') === -1 || val.indexOf('.') >= val.length - 2);
+  if (typeof val !== 'string') {
+    throw new Error('val must be of type String');
+  }
+
+  return val.indexOf('.') === -1 || val.indexOf('.') >= val.length - 2;
 }
 
 export function trimTrailingDecimal(val: string): string {
+  if (typeof val !== 'string') {
+    throw new Error('val must be of type String');
+  }
+
   return val.slice(0, val.length - 1);
 }
 
@@ -35,38 +47,54 @@ export function ozToG(val: number): number {
     throw new Error('val must contain 4 or less decimal places');
   }
 
-  return ((val * 100000 * 283495) / 10000) / 100000;
+  return (val * 28349523125) / 1000000000;
 }
 
 export function incVal(val: number, step: number): number {
-  if (isInt(val) && isInt(step)) {
-    return val + step;
-  } else if (isValidFloat(val) || isValidFloat(step)) {
-    return ((val * 10) + (step * 10)) / 10;
+  if (typeof val !== 'number' || (!isInt(val) && !isValidFloat(val))) {
+    throw new Error('val must be a number with 0 or 1 decimal places');
   }
 
-  throw new Error('Arguments must be numbers with 0 or 1 decimal places');
+  if (typeof step !== 'number' || (!isInt(step) && !isValidFloat(step))) {
+    throw new Error('step must be a number with 0 or 1 decimal places');
+  }
+
+  if (isInt(val) && isInt(step)) {
+    return val + step;
+  }
+
+  return ((val * 10) + (step * 10)) / 10;
 }
 
 export function decVal(val: number, step: number): number {
-  let newVal;
-
-  if (isInt(val) && isInt(step)) {
-    newVal = val - step;
-  } else if (isValidFloat(val) || isValidFloat(step)) {
-    newVal = ((val * 10) - (step * 10)) / 10;
-  } else {
-    throw new Error('Arguments must be numbers with 0 or 1 decimal places');
+  if (typeof val !== 'number' || (!isInt(val) && !isValidFloat(val))) {
+    throw new Error('val must be a number with 0 or 1 decimal places');
   }
 
-  return newVal;
+  if (typeof step !== 'number' || (!isInt(step) && !isValidFloat(step))) {
+    throw new Error('step must be a number with 0 or 1 decimal places');
+  }
+
+  if (isInt(val) && isInt(step)) {
+    return val - step;
+  }
+
+  return ((val * 10) - (step * 10)) / 10;
 }
 
 export function isInt(val: number): boolean {
+  if (typeof val !== 'number') {
+    throw new Error('val must be of type Number');
+  }
+
   return val.toString().indexOf('.') === -1;
 }
 
-function isValidFloat(val: number): boolean {
+export function isValidFloat(val: number): boolean {
+  if (typeof val !== 'number') {
+    throw new Error('val must be of type Number');
+  }
+
   const str = val.toString();
-  return str.indexOf('.') === str.length - 2;
+  return str.length > 2 && str.indexOf('.') === str.length - 2;
 }
