@@ -57,6 +57,7 @@ const Variable = (props: Props) => (
             color={props.backgroundColor}
             backgroundColor={COLORS.CHARCOAL_DARK}
             onPress={props.decHandler}
+            longPress
           >
             –
           </BRButton>
@@ -64,6 +65,7 @@ const Variable = (props: Props) => (
             color={props.backgroundColor}
             backgroundColor={COLORS.CHARCOAL_LIGHT}
             onPress={props.incHandler}
+            longPress
           >
             +
           </BRButton>

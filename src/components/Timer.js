@@ -98,6 +98,7 @@ class Timer extends Component {
                   (this.noSecondsElapsed() || this.incrementerAtLastCleared()) ?
                   this.handleStartClick : this.handleStopClick
                 }
+                longPress={false}
               >
                 {(this.noSecondsElapsed() || this.incrementerAtLastCleared()) ? 'start' : 'stop'}
               </BRButton>
@@ -106,6 +107,7 @@ class Timer extends Component {
                   color={backgroundColor}
                   backgroundColor={COLORS.CHARCOAL_LIGHT}
                   onPress={this.handleResetClick}
+                  longPress={false}
                 >
                   reset
                 </BRButton>
