@@ -1,6 +1,9 @@
 {
 	"name": "BrewRatio",
-	"version": "0.0.1",
+	"version": "1.0.0",
+	"description": "A ratio calculator for brewing coffee, complete with a unit converter and timer.",
+	"license": "MIT",
+	"author": "Andy Bangs <andrew.yuta@gmail.com>",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
