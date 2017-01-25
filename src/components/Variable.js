@@ -39,6 +39,7 @@ const Variable = (props: Props) => (
           onSubmitEditing={() => props.submitHandler && props.submitHandler(props.value)}
           onBlur={() => props.submitHandler && props.submitHandler(props.value)}
           blurOnSubmit
+          showDoneButton
         />
       </View>
       <View style={styles.row}>
