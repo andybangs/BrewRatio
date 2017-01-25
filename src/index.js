@@ -5,14 +5,14 @@ import { KeyboardAvoidingView, StatusBar, StyleSheet, View } from 'react-native'
 import Variable from './components/Variable';
 import Timer from './components/Timer';
 import AppStore from './stores/AppStore';
-import { COLORS } from './constants';
+import { TITLES, COLORS } from './constants';
 
 const App = observer(({ store }: { store: AppStore }) => (
   <KeyboardAvoidingView behavior="padding" style={styles.container}>
     <StatusBar hidden />
     <View style={styles.row}>
       <Variable
-        title="COFFEE"
+        title={TITLES.COFFEE}
         value={store.coffeeDisplay}
         displayInOz={store.coffee.displayInOz}
         incHandler={() => store.incCoffee()}
@@ -23,7 +23,7 @@ const App = observer(({ store }: { store: AppStore }) => (
         backgroundColor={COLORS.BROWN}
       />
       <Variable
-        title="WATER"
+        title={TITLES.WATER}
         value={store.waterDisplay}
         displayInOz={store.water.displayInOz}
         incHandler={() => store.incWater()}
@@ -36,11 +36,11 @@ const App = observer(({ store }: { store: AppStore }) => (
     </View>
     <View style={styles.row}>
       <Variable
-        title="RATIO"
+        title={TITLES.RATIO}
         value={store.ratio.value}
         incHandler={() => store.incRatio()}
         decHandler={() => store.decRatio()}
-        changeHandler={(val: string) => store.inputRatio(val)}
+        changeHandler={(val: string) => store.inputRatio(val.slice(2))}
         submitHandler={(val: string) => store.trimRatioDecimal(val)}
         backgroundColor={COLORS.GRAY}
       />

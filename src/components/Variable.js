@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import BRPanel from './BRPanel';
 import BRButton from './BRButton';
-import { COLORS } from '../constants';
+import { TITLES, COLORS } from '../constants';
 
 type Props = {
   title: string,
@@ -34,7 +34,7 @@ const Variable = (props: Props) => (
           style={styles.input}
           underlineColorAndroid={props.backgroundColor}
           selectionColor={Platform.OS === 'ios' ? COLORS.CHARCOAL : COLORS.CHARCOAL_25}
-          value={props.value}
+          value={props.title === TITLES.RATIO ? `1:${props.value}` : props.value}
           onChangeText={props.changeHandler}
           onSubmitEditing={() => props.submitHandler && props.submitHandler(props.value)}
           onBlur={() => props.submitHandler && props.submitHandler(props.value)}

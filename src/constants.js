@@ -1,5 +1,11 @@
 /* @flow */
 
+type Titles = {
+  COFFEE: string,
+  WATER: string,
+  RATIO: string
+}
+
 type Colors = {
   CHARCOAL: string,
   CHARCOAL_25: string,
@@ -12,7 +18,12 @@ type Colors = {
   GREEN: string
 };
 
-// eslint-disable-next-line import/prefer-default-export
+export const TITLES: Titles = {
+  COFFEE: 'COFFEE',
+  WATER: 'WATER',
+  RATIO: 'RATIO'
+};
+
 export const COLORS: Colors = {
   CHARCOAL: '#4f4f4f',
   CHARCOAL_25: 'rgba(79, 79, 79, 0.25)',
