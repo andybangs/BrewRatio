@@ -1,6 +1,6 @@
 {
 	"name": "BrewRatio",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "A ratio calculator for brewing coffee, complete with a unit converter and timer.",
 	"license": "MIT",
 	"author": "Andy Bangs <andrew.yuta@gmail.com>",
