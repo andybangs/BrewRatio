@@ -14,7 +14,7 @@
 		"mobx": "^3.0.2",
 		"mobx-react": "^4.1.0",
 		"react": "^15.4.2",
-		"react-native": "https://github.com/andybangs/react-native/tarball/44797138dda7de41ede10c02284710276778d731"
+		"react-native": "https://github.com/andybangs/react-native/tarball/39ed48f18e8d68b933c9157ebcc95301d2aef6ac"
 	},
 	"devDependencies": {
 		"babel-eslint": "^7.1.1",
