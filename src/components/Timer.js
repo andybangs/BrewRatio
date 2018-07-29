@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import KeepAwake from 'react-native-keep-awake';
 import BRPanel from './BRPanel';
 import BRButton from './BRButton';
 import { COLORS } from '../constants';
@@ -51,6 +52,7 @@ class Timer extends Component {
 
   handleStartClick(): void {
     if (this.state.timerState !== 'RUNNING') {
+      KeepAwake.activate();
       this.setState({ timerState: 'RUNNING' });
       this.incrementer = setInterval(() => {
         this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
@@ -60,6 +62,7 @@ class Timer extends Component {
 
   handleStopClick(): void {
     if (this.state.timerState !== 'STOPPED') {
+      KeepAwake.deactivate();
       this.setState({ timerState: 'STOPPED' });
       if (this.incrementer) clearInterval(this.incrementer);
       this.setState({ lastClearedIncrementer: this.incrementer });
