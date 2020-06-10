@@ -1,5 +1,6 @@
 /* @flow */
-import { action, computed, observable } from 'mobx';
+import { AsyncStorage } from 'react-native';
+import { action, autorun, computed, observable, runInAction } from 'mobx';
 import VariableModel from '../models/VariableModel';
 import {
   toDecimal,
@@ -17,10 +18,39 @@ export default class AppStore {
   @observable water: VariableModel;
   @observable ratio: VariableModel;
 
-  constructor(coffeeValInG: number = 20, waterValInG: number = 320, ratioVal: number = 16) {
-    this.coffee = new VariableModel('coffee', coffeeValInG, 500);
-    this.water = new VariableModel('water', waterValInG, 10000);
-    this.ratio = new VariableModel('ratio', ratioVal, 20);
+  constructor() {
+    this.coffee = new VariableModel('coffee', 20, 500);
+    this.water = new VariableModel('water', 320, 10000);
+    this.ratio = new VariableModel('ratio', 16, 20);
+
+    this.initState();
+
+    autorun(() => {
+      try {
+        AsyncStorage.setItem(
+          'brewratio',
+          JSON.stringify({ coffee: this.coffee, water: this.water, ratio: this.ratio })
+        );
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  }
+
+  @action async initState(): void {
+    try {
+      const result = await AsyncStorage.getItem('brewratio')
+      if (result !== null) {
+        const { coffee, water, ratio } = JSON.parse(result);
+        runInAction(() => {
+          this.coffee = coffee;
+          this.water = water;
+          this.ratio = ratio;
+        });
+      }
+    } catch(err) {
+      console.error(err);
+    }
   }
 
   @computed get coffeeDisplay(): string {
