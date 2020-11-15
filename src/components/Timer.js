@@ -1,6 +1,14 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import {
+  AppState,
+  AppStateStatus,
+  AsyncStorage,
+  Dimensions,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 import KeepAwake from 'react-native-keep-awake';
 import BRPanel from './BRPanel';
 import BRButton from './BRButton';
@@ -11,24 +19,23 @@ type Props = {
 };
 
 class Timer extends Component {
+  static STORAGE_KEY = 'brewratio-timer';
+
   props: Props;
 
   state: {
     secondsElapsed: number,
     lastClearedIncrementer: number | null,
-    timerState: 'STOPPED' | 'RUNNING';
+    timerState: 'STOPPED' | 'RUNNING',
+    appState: AppStateStatus,
+    appStateUpdated: number;
   };
-
-  incrementer: number;
-  handleStartClick: () => void;
-  handleStopClick: () => void;
-  handleResetClick: () => void;
-  noSecondsElapsed: () => boolean;
-  incrementerAtLastCleared: () => boolean;
 
   constructor(props: Props) {
     super(props);
 
+    this.appInBackground = this.appInBackground.bind(this);
+    this.handleAppStateChange = this.handleAppStateChange.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleStopClick = this.handleStopClick.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
@@ -38,8 +45,42 @@ class Timer extends Component {
     this.state = {
       secondsElapsed: 0,
       lastClearedIncrementer: null,
-      timerState: 'STOPPED'
+      timerState: 'STOPPED',
+      appState: AppState.currentState,
+      appStateUpdated: Date.now()
     };
+  }
+
+  componentDidMount() {
+    AppState.addEventListener('change', this.handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.handleAppStateChange);
+  }
+
+  appInBackground(): boolean {
+    return this.state.appState.match(/inactive|background/);
+  }
+
+  async handleAppStateChange(nextAppState): void {
+    try {
+      if (this.appInBackground() && nextAppState === 'active') {
+        const result = await AsyncStorage.getItem(Timer.STORAGE_KEY);
+        if (result !== null) {
+          const state = JSON.parse(result);
+          if (state.timerState === 'RUNNING') {
+            state.secondsElapsed += Math.ceil((Date.now() - state.appStateUpdated) / 1000);
+          }
+          this.setState(state);
+        }
+      } else {
+        AsyncStorage.setItem(Timer.STORAGE_KEY, JSON.stringify(this.state));
+      }
+    } catch(err) {
+      console.error(err);
+    }
+    this.setState({ appState: nextAppState, appStateUpdated: Date.now() });
   }
 
   getSeconds(): string {
@@ -48,6 +89,10 @@ class Timer extends Component {
 
   getMinutes(): string {
     return Math.floor(this.state.secondsElapsed / 60).toString();
+  }
+
+  getPlaceholder(): string {
+    return this.getMinutes().length > 1 ? '--:--' : '-:--';
   }
 
   handleStartClick(): void {
@@ -89,7 +134,10 @@ class Timer extends Component {
       <BRPanel title="TIMER" backgroundColor={backgroundColor}>
         <View style={styles.container}>
           <View style={styles.row}>
-            <Text style={styles.value}>{this.getMinutes()}:{this.getSeconds()}</Text>
+            <Text style={styles.value}>
+              {!this.appInBackground() || this.state.timerState !== 'RUNNING' ?
+                `${this.getMinutes()}:${this.getSeconds()}` : this.getPlaceholder()}
+            </Text>
           </View>
           <View style={styles.row} />
           <View style={styles.row}>
@@ -102,6 +150,7 @@ class Timer extends Component {
                   this.handleStartClick : this.handleStopClick
                 }
                 longPress={false}
+                disabled={this.appInBackground()}
               >
                 {(this.noSecondsElapsed() || this.incrementerAtLastCleared()) ? 'start' : 'stop'}
               </BRButton>
