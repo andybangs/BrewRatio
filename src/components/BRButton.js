@@ -9,7 +9,8 @@ type Props = {
   color: string,
   backgroundColor: string,
   longPress: bool,
-  onPress: () => void
+  onPress: () => void,
+  disabled?: bool
 };
 
 const BRButton = (props: Props) => (
@@ -19,6 +20,7 @@ const BRButton = (props: Props) => (
     onPress={props.onPress}
     onPressIn={() => props.longPress && (interval = setInterval(props.onPress, 100))}
     onPressOut={() => props.longPress && interval && clearInterval(interval)}
+    disabled={typeof props.disabled !== 'undefined' ? props.disabled : false}
   >
     <Text style={[styles.text, { color: props.color }]}>{props.children}</Text>
   </TouchableHighlight>
