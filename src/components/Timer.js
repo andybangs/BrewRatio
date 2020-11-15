@@ -1,14 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
-import {
-  AppState,
-  AppStateStatus,
-  AsyncStorage,
-  Dimensions,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppState, AppStateStatus, Dimensions, StyleSheet, Text, View } from 'react-native';
 import KeepAwake from 'react-native-keep-awake';
 import BRPanel from './BRPanel';
 import BRButton from './BRButton';
@@ -19,8 +11,6 @@ type Props = {
 };
 
 class Timer extends Component {
-  static STORAGE_KEY = 'brewratio-timer';
-
   props: Props;
 
   state: {
@@ -64,21 +54,13 @@ class Timer extends Component {
   }
 
   async handleAppStateChange(nextAppState): void {
-    try {
-      if (this.appInBackground() && nextAppState === 'active') {
-        const result = await AsyncStorage.getItem(Timer.STORAGE_KEY);
-        if (result !== null) {
-          const state = JSON.parse(result);
-          if (state.timerState === 'RUNNING') {
-            state.secondsElapsed += Math.ceil((Date.now() - state.appStateUpdated) / 1000);
-          }
-          this.setState(state);
-        }
-      } else {
-        AsyncStorage.setItem(Timer.STORAGE_KEY, JSON.stringify(this.state));
-      }
-    } catch(err) {
-      console.error(err);
+    if (
+      this.state.timerState === 'RUNNING' &&
+      this.appInBackground() &&
+      nextAppState === 'active'
+    ) {
+      this.setState(({ secondsElapsed, appStateUpdated }) =>
+        ({ secondsElapsed: secondsElapsed + Math.ceil((Date.now() - appStateUpdated) / 1000) }));
     }
     this.setState({ appState: nextAppState, appStateUpdated: Date.now() });
   }
